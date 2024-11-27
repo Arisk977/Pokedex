@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Raleway', sans-serif;
+}
+
+header {
+    height: 100px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.342);
+}
+
+main {
+    flex-grow: 1;
+}
+
+footer {
+    height: 100px;
+    background-color: rgb(62, 62, 62);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.342);
+}
