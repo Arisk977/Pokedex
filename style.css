@@ -22,23 +22,7 @@ main {
     justify-content: center;
 }
 
-#overlay{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.258);
-    height: 200vh;
-    width: 100%;
-    z-index: 5;
-}
 
-#pokemon-overlay{
-    height: 80vh;
-    width: 70%;
-    background-color: white;
-    z-index: 10;
-}
 
 .d-none {
     display: none;
