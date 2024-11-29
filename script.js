@@ -51,9 +51,9 @@ function mergePokemonData(newPokemon) {
 
 async function promisePokemonCard(responseToJson, array) {
     try {
-        let allPokemonPromise = await Promise.all(array);
+        let allPokemon = await Promise.all(array);
         for (let index = 0; index < responseToJson.results.length; index++) {
-            content.innerHTML += pokeCardTemp(index, allPokemonPromise);
+            content.innerHTML += pokeCardTemp(index, allPokemon);
         }
     } catch (error) {
       
@@ -96,12 +96,19 @@ async function fetchMorePokemon() {
     }
 }
 
-function openPokeInfo(index) {
+function openPokeCard(index) {
     let overlayRef = document.getElementById('overlay');
     overlayRef.classList.remove('d-none');
     overlayRef.innerHTML = pokemonOverlayCardTemp(index, allPokemon);
-    console.log(allPokemon);
+    renderPokeCard(index);
+    addPokeCries(index)
     
+}
+
+function addPokeCries(index){
+    let audioIndex = index +1;
+    let cries= new Audio(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${audioIndex}.ogg`);
+   cries.play();
 }
 
 function closePokeInfo(){

@@ -11,11 +11,16 @@ async function getPokemonData(responseToJson, i) {
         "type1": `${Pokemon_type1}`,
         "type1_img": await getTypesSlot1Image(Pokemon_Json),
         "type2": getTypeSlot2(Pokemon_Json),
-        "type2_img": await getTypesSlot2Image(Pokemon_Json)
+        "type2_img": await getTypesSlot2Image(Pokemon_Json),
+        "weight": `${Pokemon_Json.weight}`,
+        "height": `${Pokemon_Json.height}`,
+        "ability": `${Pokemon_Json.abilities[0].ability.name}`
+
     }
-    
+    console.log();
        return PokemonDataArray;
 }
+
 
 async function getTypesSlot1Image(Pokemon_Json) {
     let PokemonTypePage = await fetch(Pokemon_Json.types[0].type.url);
