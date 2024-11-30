@@ -31,16 +31,16 @@ function pokemonOverlayCardTemp(index, allPokemon) {
                 <nav id="navbar">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                             <a class="nav-link active" aria-current="page" href="#">Info</a>
+                             <a class="nav-link active" id="poke-info-tab" onclick="showPokeInfo(${index})">Info</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Stats</a>
+                            <a class="nav-link" id="poke-stats-tab" onclick="showPokeStats(${index})">Stats</a>
                         </li>
                         <li class="nav-item">
-                             <a class="nav-link" href="#">Evolution</a>
+                             <a class="nav-link" id="poke-evo-tab" onclick="showPokeEvo(${index})">Evolution</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">Moves</a>
+                            <a class="nav-link" id="poke-moves-tab" onclick="showPokeMoves(${index})">Moves</a>
                         </li>
                     </ul>
                 </nav>
@@ -51,11 +51,68 @@ function pokemonOverlayCardTemp(index, allPokemon) {
 
 function pokeInfoTemp(index){
     return `<div>
-    <span> <h5>abiltity:</h5> ${allPokemon[index].ability}</span>
-    <span> <h5>second abiltity:</h5> ${allPokemon[index].ability}</span>
-    <span> <h5>hidden abiltity:</h5> ${allPokemon[index].ability}</span>
-    <span> <h5>height:</h5> ${allPokemon[index].height}</span>
-    <span> <h5>weight:</h5> ${allPokemon[index].weight}</span>
+    <span class="pokeInfoText"> <h5>abiltity:</h5> ${allPokemon[index].ability}</span>
+    <span class="pokeInfoText"> <h5>second abiltity:</h5> ${allPokemon[index].secondAbility}</span>
+    <span class="pokeInfoText"> <h5>hidden abiltity:</h5> ${allPokemon[index].hiddenAbility}</span>
+    <span class="pokeInfoText"> <h5>height:</h5> ${allPokemon[index].height} cm</span>
+    <span class="pokeInfoText"> <h5>weight:</h5> ${allPokemon[index].weight} g</span>
 </div>
        `
+}
+
+function pokeStatsTemp(index){
+    return `
+   <div>
+    <table>
+        <tr>
+            <td>KP</td>
+            <td>Ev</td>
+            <td>Base Stats</td>
+            <td>progessbar</td>
+        </tr>
+        <tr>
+            <td>Attack</td>
+            <td>Ev</td>
+            <td>Base Stats</td>
+            <td>progessbar</td>
+        </tr>
+        <tr>
+            <td>Defense</td>
+            <td>Ev</td>
+            <td>Base Stats</td>
+            <td>progessbar</td>
+        </tr>
+        <tr>
+            <td>Sp. Attack</td>
+            <td>Ev</td>
+            <td>Base Stats</td>
+            <td>progessbar</td>
+        </tr>
+        <tr>
+            <td>Sp. Defense</td>
+            <td>Ev</td>
+            <td>Base Stats</td>
+            <td>progessbar</td>
+        </tr>
+        <tr>
+            <td>Speed</td>
+            <td>Ev</td>
+            <td>Base Stats</td>
+            <td>progessbar</td>
+        </tr>
+    </table>
+</div>
+    `
+}
+
+function pokeEvoTemp(index){
+    return `
+    
+    `
+}
+
+function pokeMovesTemp(index){
+    return `
+    
+    `
 }

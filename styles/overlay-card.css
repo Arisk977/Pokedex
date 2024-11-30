@@ -76,5 +76,17 @@ nav{width: 100%;
 }
 
 #poke-info{
-    padding-top:24px;
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pokeInfoText{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.pokeInfoText h5{
+    margin-right: 100px;
 }

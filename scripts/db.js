@@ -13,14 +13,31 @@ async function getPokemonData(responseToJson, i) {
         "type2": getTypeSlot2(Pokemon_Json),
         "type2_img": await getTypesSlot2Image(Pokemon_Json),
         "weight": `${Pokemon_Json.weight}`,
-        "height": `${Pokemon_Json.height}`,
-        "ability": `${Pokemon_Json.abilities[0].ability.name}`
+        "height": `${Pokemon_Json.height}0`,
+        "ability": `${Pokemon_Json.abilities[0].ability.name}`,
+        "secondAbility": getSecondAbility(Pokemon_Json),
+        "hiddenAbility": getHiddenAbility(Pokemon_Json)
 
     }
-    console.log();
+    console.log(Pokemon_Json.abilities.length);
        return PokemonDataArray;
 }
 
+
+function getSecondAbility(Pokemon_Json){ 
+if(Pokemon_Json.abilities.length == 3){
+    return Pokemon_Json.abilities[1].ability.name
+}
+else {return "-"}
+}
+
+function getHiddenAbility(Pokemon_Json){ 
+    if(Pokemon_Json.abilities.length == 3){
+        return Pokemon_Json.abilities[2].ability.name
+    }
+    else if (Pokemon_Json.abilities.length == 2)
+        {return Pokemon_Json.abilities[1].ability.name}
+    }
 
 async function getTypesSlot1Image(Pokemon_Json) {
     let PokemonTypePage = await fetch(Pokemon_Json.types[0].type.url);

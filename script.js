@@ -109,6 +109,7 @@ function addPokeCries(index){
     let audioIndex = index +1;
     let cries= new Audio(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${audioIndex}.ogg`);
    cries.play();
+   cries.volume = 0.2;
 }
 
 function closePokeInfo(){
