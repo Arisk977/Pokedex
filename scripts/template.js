@@ -50,65 +50,127 @@ function pokemonOverlayCardTemp(index, allPokemon) {
 }
 
 function pokeInfoTemp(index){
-    return `<div>
-    <span class="pokeInfoText"> <h5>abiltity:</h5> ${allPokemon[index].ability}</span>
-    <span class="pokeInfoText"> <h5>second abiltity:</h5> ${allPokemon[index].secondAbility}</span>
-    <span class="pokeInfoText"> <h5>hidden abiltity:</h5> ${allPokemon[index].hiddenAbility}</span>
-    <span class="pokeInfoText"> <h5>height:</h5> ${allPokemon[index].height} cm</span>
-    <span class="pokeInfoText"> <h5>weight:</h5> ${allPokemon[index].weight} g</span>
-</div>
+    return `
+    <table>
+    <tr>
+        <th>ability:</th>
+        <td>${allPokemon[index].ability}</td>
+    </tr>
+    <tr>
+        <th>second ability:</th>
+        <td>${allPokemon[index].secondAbility}</td>
+    </tr>
+    <tr>
+        <th>hidden abitity:</th>
+        <td>${allPokemon[index].hiddenAbility}</td>
+    </tr>
+    <tr>
+        <th>height:</th>
+        <td>${allPokemon[index].height}</td>
+    </tr>
+    <tr>
+        <th>weight:</th>
+        <td>${allPokemon[index].weight}</td>
+    </tr>
+</table>
        `
 }
 
 function pokeStatsTemp(index){
     return `
-   <div>
+   <div id="stats-container">
     <table>
+         <tr>
+            <th>Stats</th>
+            <th>Ev</th>
+            <th>Base Stats</th>
+            <th></th>
+        </tr>
         <tr>
             <td>KP</td>
-            <td>Ev</td>
-            <td>Base Stats</td>
-            <td>progessbar</td>
+            <td>${allPokemon[index].ev_hp}</td>
+            <td>${allPokemon[index].hp}</td>
+            <td><div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar" style="width: ${allPokemon[index].hp}px">${allPokemon[index].hp}</div>
+</div></td>
         </tr>
         <tr>
             <td>Attack</td>
-            <td>Ev</td>
-            <td>Base Stats</td>
-            <td>progessbar</td>
+            <td>${allPokemon[index].ev_atk}</td>
+            <td>${allPokemon[index].atk}</td>
+            <td><div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="20" aria-valuemin="0" aria-valuemax="255">
+  <div class="progress-bar" style="width: ${allPokemon[index].atk}px">${allPokemon[index].atk}</div>
+</div></td>
         </tr>
         <tr>
             <td>Defense</td>
-            <td>Ev</td>
-            <td>Base Stats</td>
-            <td>progessbar</td>
+            <td>${allPokemon[index].ev_def}</td>
+            <td>${allPokemon[index].def}</td>
+            <td><div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar" style="width: ${allPokemon[index].def}px">${allPokemon[index].def}</div>
+</div></td>
         </tr>
         <tr>
             <td>Sp. Attack</td>
-            <td>Ev</td>
-            <td>Base Stats</td>
-            <td>progessbar</td>
+            <td>${allPokemon[index].ev_sp_atk}</td>
+            <td>${allPokemon[index].sp_atk}</td>
+            <td><div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar" style="width: ${allPokemon[index].sp_atk}px">${allPokemon[index].sp_atk}</div>
+</div></td>
         </tr>
         <tr>
             <td>Sp. Defense</td>
-            <td>Ev</td>
-            <td>Base Stats</td>
-            <td>progessbar</td>
+            <td>${allPokemon[index].ev_sp_def}</td>
+            <td>${allPokemon[index].sp_def}</td>
+            <td><div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar" style="width: ${allPokemon[index].sp_def}px">${allPokemon[index].sp_def}</div>
+</div></td>
         </tr>
         <tr>
             <td>Speed</td>
-            <td>Ev</td>
-            <td>Base Stats</td>
-            <td>progessbar</td>
+            <td>${allPokemon[index].ev_speed}</td>
+            <td>${allPokemon[index].speed}</td>
+            <td><div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar" style="width: ${allPokemon[index].speed}px">${allPokemon[index].speed}</div>
+</div></td>
         </tr>
     </table>
 </div>
     `
 }
 
-function pokeEvoTemp(index){
+function pokeEvoTemp(foundEvolutions){
+    if(Object.keys(foundEvolutions).length === 3){
     return `
-    
-    `
+     <div id="evo-container">
+        <div class="evo-img"><img src="${foundEvolutions.evo1.svg}" alt=""></div>
+        <div class="arrow-evo"><img src="./img/Arrow-Button-Right-3--Streamline-Ultimate.png" alt=""><span>Level ${foundEvolutions.evo2.levelUp}</span>
+   </div>
+        <div class="evo-img"><img src="${foundEvolutions.evo2.svg}" alt=""></div>
+        <div class="arrow-evo"><img src="./img/Arrow-Button-Right-3--Streamline-Ultimate.png" alt=""><span>Level ${foundEvolutions.evo3.levelUp}</span>
+   </div>
+        <div class="evo-img"><img src="${foundEvolutions.evo3.svg}" alt=""></div>
+    </div>
+    `}
+    else if(Object.keys(foundEvolutions).length === 2){
+        return `
+           <div id="evo-container">
+        <div class="evo-img"><img src="${foundEvolutions.evo1.svg}" alt=""></div>
+        <div class="arrow-evo"><img src="./img/Arrow-Button-Right-3--Streamline-Ultimate.png" alt=""><span>Level ${foundEvolutions.evo2.levelUp}</span>
+   </div>
+        <div class="evo-img"><img src="${foundEvolutions.evo2.svg}" alt=""></div>
+        </div>
+        
+       `
+    }
+
+    else {
+        return `
+        <div id="evo-container">
+           <div class="evo-img"><img src="${foundEvolutions.evo1.svg}" alt=""></div>
+       </div>
+       `
+    }
 }
 
 function pokeMovesTemp(index){

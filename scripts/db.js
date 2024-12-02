@@ -16,10 +16,21 @@ async function getPokemonData(responseToJson, i) {
         "height": `${Pokemon_Json.height}0`,
         "ability": `${Pokemon_Json.abilities[0].ability.name}`,
         "secondAbility": getSecondAbility(Pokemon_Json),
-        "hiddenAbility": getHiddenAbility(Pokemon_Json)
+        "hiddenAbility": getHiddenAbility(Pokemon_Json),
+        "hp": `${Pokemon_Json.stats[0].base_stat}`,
+        "atk": `${Pokemon_Json.stats[1].base_stat}`,
+        "def": `${Pokemon_Json.stats[2].base_stat}`,
+        "sp_atk": `${Pokemon_Json.stats[3].base_stat}`,
+        "sp_def": `${Pokemon_Json.stats[4].base_stat}`,
+        "speed": `${Pokemon_Json.stats[5].base_stat}`,
+        "ev_hp": `${Pokemon_Json.stats[0].effort}`,
+        "ev_atk": `${Pokemon_Json.stats[1].effort}`,
+        "ev_def": `${Pokemon_Json.stats[2].effort}`,
+        "ev_sp_atk": `${Pokemon_Json.stats[3].effort}`,
+        "ev_sp_def": `${Pokemon_Json.stats[4].effort}`,
+        "ev_speed": `${Pokemon_Json.stats[5].effort}`,
 
     }
-    console.log(Pokemon_Json.abilities.length);
        return PokemonDataArray;
 }
 

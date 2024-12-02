@@ -10,6 +10,9 @@ function init() {
     renderPokemon();
 }
 
+
+
+
 async function renderPokemon() {
     enableLoadingSpinner();
     let content = document.getElementById('content');
@@ -100,9 +103,9 @@ function openPokeCard(index) {
     let overlayRef = document.getElementById('overlay');
     overlayRef.classList.remove('d-none');
     overlayRef.innerHTML = pokemonOverlayCardTemp(index, allPokemon);
-    renderPokeCard(index);
-    addPokeCries(index)
     
+    renderPokeCard(index);
+    addPokeCries(index);
 }
 
 function addPokeCries(index){
