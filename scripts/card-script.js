@@ -7,7 +7,8 @@ async function renderEvolution(index) {
     let EvoJSON = await EvoFetch.json();
     let EvoChainUrl = await fetch(EvoJSON.evolution_chain.url);
     let EvoChainJSON = await EvoChainUrl.json();
-
+    
+    await getAllGenPokemon();
     getEvoChainNames(EvoChainJSON)
 }
 
@@ -57,8 +58,8 @@ function getLevelUpEvo(EvoChainJSON) {
 function findPokemon(levelUpSecondEvo, levelUpThirdEvo, evoTriggerSecond, evoTriggerThird) {
     for (let key in EvolutionData) {
         let pokemonName = EvolutionData[key];
-        let foundPokemon = allPokemon.find(pokemon => pokemon.pokemon === pokemonName);
-
+        let foundPokemon = allGenPokemon.find(pokemon => pokemon.pokemon === pokemonName);
+console.log(foundPokemon);
         if (foundPokemon) {
             foundEvolutions[key] = {
                 name: foundPokemon.pokemon,
@@ -102,12 +103,17 @@ function showPokeStats(index) {
 async function showPokeEvo(index) {
     let pokeInfoContainer = document.getElementById('poke-info');
     let pokeEvoTab = document.getElementById('poke-evo-tab');
-
+    
     foundEvolutions = {};
-    await renderEvolution(index);
     pokeInfoContainer.innerHTML = "";
+
+    pokeInfoContainer.innerHTML = loadingTemp();
+    
+    await renderEvolution(index);
+    pokeInfoContainer.innerHTML= "";
     pokeInfoContainer.innerHTML = pokeEvoTemp(foundEvolutions);
     enableActiveTab(pokeEvoTab);
+    
 }
 
 

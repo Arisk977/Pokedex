@@ -34,7 +34,8 @@ h1 a {
 }
 
 header img {
-    height: 80px;
+    height: 70px;
+    margin-left: -60px;
 }
 
 .logo {
@@ -199,8 +200,14 @@ header img {
     border-color: brown;
 }
 
-.loading-spinner {
+#loading-spinner {
     height: 250px;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.389));
+    animation: spin 1.5s linear infinite;
+}
+
+#loading-evo {
+    height: 150px;
     filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.389));
     animation: spin 1.5s linear infinite;
 }
@@ -213,4 +220,16 @@ header img {
     100% {
         transform: rotate(360deg);
     }
+}
+
+form{
+    display: flex;
+    align-items: center;
+}
+
+input{
+    height: 60px;
+    width: 250px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.325);
 }

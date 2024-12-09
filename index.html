@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
+    <link rel="icon" type="image/x-icon" href="./img/Pokeball--Streamline-Kameleon.svg">
     <link rel="stylesheet" href="./styles/fonts.css">
     <link rel="stylesheet" href="./styles/standard.css">
     <link rel="stylesheet" href="./styles/overlay-card.css">
@@ -25,7 +26,12 @@
     <header>
         <h1><a href="./index.html">Pokedex</a></h1>
         <img src="./img/pokemon-23.svg" alt="">
-        <img class="logo" src="./img/Pokeball--Streamline-Kameleon.svg" alt="">
+        <form action="">
+            <label for="search-pokemon"></label>
+        <input type="text" id="search-pokemon" placeholder="find your Pokemon">
+        <img class="logo" src="./img/Pokeball--Streamline-Kameleon.svg" onclick="renderSearchedPokemon()">
+    </form>
+        
     </header>
 
 <div id="overlay" class="d-none">
@@ -34,7 +40,7 @@
 
     <main id="main-container">
         <div id="loading-container">
-            <img id="loading-spinner" class="loading-spinner" src="./img/Pokeball--Streamline-Kameleon.svg"
+            <img id="loading-spinner" src="./img/Pokeball--Streamline-Kameleon.svg"
                 alt="Pokeball">
             <h3 id="loading-text">is loading...</h3>
         </div>

@@ -21,6 +21,8 @@
     border: 2px solid black;
     border-top: 0;
     z-index: 10;
+    overflow: hidden;
+    position: relative;
 }
 
 #close-button{
@@ -73,6 +75,7 @@ nav{width: 100%;
 
 .nav-link:hover {
     background-color: wheat;
+    cursor: pointer;
 }
 
 #poke-info{
@@ -95,6 +98,10 @@ table{
     overflow:scroll;
 }
 
+#stats{
+    text-align: center;
+}
+
 td{
 padding-left: 20px;
 padding-bottom: 10px;
@@ -107,6 +114,7 @@ th{
     
 .progress{
     width: 255px;
+    border: 0.5px solid black;
 }
 
 #evo-container{
@@ -131,4 +139,61 @@ th{
 .evo-img img{
     height: 120px;
     aspect-ratio: 4/3;
+}
+
+
+@media(max-width: 1000px){
+    .evo-img img{
+        height: 90px;
+    }
+    #evo-container{
+        gap: 10px;
+    }
+}
+
+@media(max-width: 800px){
+    .d-none-800px {
+        display: none !important;
+    }
+    #evo-container{
+        flex-direction: column;
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+    #pokemon-overlay{
+        height: 95vh;
+        overflow: hidden scroll;
+    }
+
+    /* Scrollbar track */
+#pokemon-overlay::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Scrollbar color */
+#pokemon-overlay::-webkit-scrollbar-thumb {
+    background-color: #7c7b7b; /* Color of the scroll thumb */
+    border-radius: 20px; /* Rounded edges for the thumb */
+}
+
+/* Scrollbar track color */
+#pokemon-overlay::-webkit-scrollbar-track {
+    background-color: #606060; /* Background of the scrollbar track */
+    border-radius: 10px;
+}
+#pokemon-overlay::-webkit-scrollbar-button:vertical:end {
+    background-color: #7c7b7b00; /* Farbe des Buttons */
+    height: 30px; /* Höhe des Buttons */
+    border-radius: 0 0 10px 10px; /* Abgerundete Kanten unten */
+}
+/* Hover effect on scrollbar thumb */
+#pokemon-overlay::-webkit-scrollbar-thumb:hover {
+    background-color: #3b3b3b; /* Darker color when hovered */
+    cursor: grab;
+}
+#pokemon-overlay::-webkit-scrollbar-thumb:active{
+    background-color: #292929; /* Darker color when hovered */
+    cursor: grabbing;
+}
+
 }

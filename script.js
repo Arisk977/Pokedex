@@ -5,13 +5,12 @@ let pokemon = [];
 let newPokemon = [];
 let PokemonDataArray= {};
 let allPokemon= [];
+let allGenPokemon = [];
+let searchedPokemon=[]
 
 function init() {
     renderPokemon();
 }
-
-
-
 
 async function renderPokemon() {
     enableLoadingSpinner();
@@ -23,7 +22,6 @@ async function renderPokemon() {
     await getInfoToArray(responseToJson, pokemon);
     mergePokemonData(pokemon);
     renderPokemonCards();
-
     disableLoadingSpinner();
 }
 
@@ -34,6 +32,43 @@ function renderPokemonCards() {
     allPokemon.forEach((poke, index) => {
         content.innerHTML += pokeCardTemp(index, allPokemon);
     });
+}
+
+async function renderSearchedPokemon(){
+    enableLoadingSpinner();
+    let content = document.getElementById('content');
+    allPokemon= [];
+    content.innerHTML = "";
+    await fetchAllPokemonArray();
+    searchPokemon();
+    renderPokemonCards();
+    disableLoadingSpinner();
+}
+
+async function fetchAllPokemonArray(){
+    let response = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151`);
+    let responseToJson = await response.json();
+
+    await getInfoToArray(responseToJson, pokemon);
+    mergePokemonData(pokemon);
+}
+
+function searchPokemon() {
+    let pokemonName = document.getElementById('search-pokemon').value.toLowerCase(); 
+    let filterPokemon = allPokemon.filter(pokeName =>
+        pokeName.pokemon.toLowerCase().startsWith(pokemonName) 
+    );
+
+    return allPokemon = filterPokemon;
+}
+
+async function getAllGenPokemon() {
+    let allGenURL= await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=500");
+    let allGenJSON= await allGenURL.json();
+
+    allGenPokemon= [];
+    await getInfoToArray(allGenJSON, allGenPokemon);
+    
 }
 
 async function getInfoToArray(responseToJson, array) {
@@ -49,17 +84,6 @@ function mergePokemonData(newPokemon) {
         if (!allPokemon.find(p => p.id === poke.id)) {
             allPokemon.push(poke);
         }
-    }
-}
-
-async function promisePokemonCard(responseToJson, array) {
-    try {
-        let allPokemon = await Promise.all(array);
-        for (let index = 0; index < responseToJson.results.length; index++) {
-            content.innerHTML += pokeCardTemp(index, allPokemon);
-        }
-    } catch (error) {
-      
     }
 }
 
