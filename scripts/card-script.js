@@ -1,8 +1,9 @@
 let EvolutionData = {};
 let foundEvolutions = {};
 
-async function renderEvolution(index) {
-    let evoIndex = index + 1
+async function renderEvolution(index, array) {
+    let evoIndex = array[index].id
+    
     let EvoFetch = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${evoIndex}/`);
     let EvoJSON = await EvoFetch.json();
     let EvoChainUrl = await fetch(EvoJSON.evolution_chain.url);
@@ -73,21 +74,25 @@ console.log(foundPokemon);
     return foundEvolutions;
 }
 
-
-
-function renderPokeCard(index) {
+function renderPokeCard(index, array) {
     let pokeInfoContainer = document.getElementById('poke-info');
     pokeInfoContainer.innerHTML = "";
 
-    pokeInfoContainer.innerHTML = pokeInfoTemp(index);
+    pokeInfoContainer.innerHTML = pokeInfoTemp(index, array);
 }
 
 function showPokeInfo(index) {
     let pokeInfoContainer = document.getElementById('poke-info');
     let pokeInfoTab = document.getElementById('poke-info-tab');
-
+    if(searchedPokemon.length > 0){
     pokeInfoContainer.innerHTML = "";
-    pokeInfoContainer.innerHTML = pokeInfoTemp(index);
+    pokeInfoContainer.innerHTML = pokeInfoTemp(index, searchedPokemon);
+}
+    else {
+        pokeInfoContainer.innerHTML = "";
+        pokeInfoContainer.innerHTML = pokeInfoTemp(index, allPokemon);
+    }
+    
     enableActiveTab(pokeInfoTab)
 }
 
@@ -95,8 +100,16 @@ function showPokeStats(index) {
     let pokeInfoContainer = document.getElementById('poke-info');
     let pokeStatsTab = document.getElementById('poke-stats-tab');
 
-    pokeInfoContainer.innerHTML = "";
-    pokeInfoContainer.innerHTML = pokeStatsTemp(index);
+
+    if(searchedPokemon.length > 0){
+        pokeInfoContainer.innerHTML = "";
+        pokeInfoContainer.innerHTML = pokeStatsTemp(index, searchedPokemon);
+    }
+        else {
+            pokeInfoContainer.innerHTML = "";
+            pokeInfoContainer.innerHTML = pokeStatsTemp(index, allPokemon);
+        }
+   
     enableActiveTab(pokeStatsTab)
 }
 
@@ -108,22 +121,43 @@ async function showPokeEvo(index) {
     pokeInfoContainer.innerHTML = "";
 
     pokeInfoContainer.innerHTML = loadingTemp();
+
+    if(searchedPokemon.length > 0){
+        await renderEvolution(index, searchedPokemon);
+        pokeInfoContainer.innerHTML= "";
+        pokeInfoContainer.innerHTML = pokeEvoTemp(foundEvolutions);
+    }
+        else {
+            await renderEvolution(index, allPokemon);
+            pokeInfoContainer.innerHTML= "";
+            pokeInfoContainer.innerHTML = pokeEvoTemp(foundEvolutions);
+        }
     
-    await renderEvolution(index);
-    pokeInfoContainer.innerHTML= "";
-    pokeInfoContainer.innerHTML = pokeEvoTemp(foundEvolutions);
     enableActiveTab(pokeEvoTab);
     
 }
 
 
-function showPokeMoves(index) {
-    let pokeInfoContainer = document.getElementById('poke-info');
-    let pokeMovesTab = document.getElementById('poke-moves-tab');
-
-    pokeInfoContainer.innerHTML = "";
-    pokeInfoContainer.innerHTML = pokeMovesTemp(index);
-    enableActiveTab(pokeMovesTab)
+async function showPokeDetails(index) {
+ if(searchedPokemon.length > 0){
+        let cardIndex = searchedPokemon[index].id
+        let pokeInfoContainer = document.getElementById('poke-info');
+        let EvoFetch = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${cardIndex}/`);
+        let EvoJSON = await EvoFetch.json();
+        pokeInfoContainer.innerHTML = "";
+        pokeInfoContainer.innerHTML = pokeDetailsTemp(EvoJSON.flavor_text_entries[15].flavor_text);
+    }
+        else {
+            let cardIndex = allPokemon[index].id
+            let pokeInfoContainer = document.getElementById('poke-info');
+            let EvoFetch = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${cardIndex}/`);
+            let EvoJSON = await EvoFetch.json();
+        
+            pokeInfoContainer.innerHTML = "";
+            pokeInfoContainer.innerHTML = pokeDetailsTemp(EvoJSON.flavor_text_entries[15].flavor_text);
+        }
+        let pokeDetailsTab = document.getElementById('poke-details-tab');
+        enableActiveTab(pokeDetailsTab)
 }
 
 function enableActiveTab(enable) {

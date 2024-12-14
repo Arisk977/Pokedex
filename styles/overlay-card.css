@@ -1,4 +1,4 @@
-#overlay{
+#overlay {
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -10,14 +10,14 @@
     z-index: 5;
 }
 
-#pokemon-overlay{
+#pokemon-overlay {
     height: 80vh;
     width: 70%;
-    background-color: #EEFCE9;
+    background-color:  #EEFCE9;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 0 0 50px 50px;
+    border-radius: 0 0 30px 30px;
     border: 2px solid black;
     border-top: 0;
     z-index: 10;
@@ -25,51 +25,64 @@
     position: relative;
 }
 
-#close-button{
-   width: 70%;
+#close-button {
+    width: 70%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border: 2px solid black;
     border-bottom: 0;
-    border-radius:  50px 50px 0 0;
+    border-radius: 30px 30px 0 0;
     text-align: end;
     background-color: #808080;
 }
 
-#close-button h2{
+#close-button h2 {
     color: white;
     font-weight: bold;
+    -webkit-text-stroke-width: 0.8px;
+    -webkit-text-stroke-color: black;
 }
 
-#close-button img{
-filter: drop-shadow(1px 1px 1px black);
-margin: 20px;
+#close-button img {
+    filter: drop-shadow(1px 1px 1px black);
+    margin: 20px;
 }
 
-#close-button img:hover{
+#close-button img:hover {
     transform: scale(1.1);
     cursor: pointer;
     transition: ease-in-out 75ms;
 }
 
-#sprites{
+#sprites {
     padding-top: 32px;
+    min-height: 40vh;
     height: 400px;
     width: 100%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#sprites img{
+#sprites img {
     height: 300px;
     aspect-ratio: 4/3;
     filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.722));
 }
 
-nav{width: 100%;
+nav {
+    width: 100%;
+    min-height: 5vh;
 }
 
-.nav-link{
+.nav{
+    --bs-border-width: 2px;
+    --bs-border-style: solid;
+    --bs-border-color: #cbd9c9;
+}
+
+.nav-link {
     color: black !important;
 }
 
@@ -78,122 +91,201 @@ nav{width: 100%;
     cursor: pointer;
 }
 
-#poke-info{
-    padding-top: 15px;
+#poke-info {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
 
-.pokeInfoText{
+.pokeInfoText {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.pokeInfoText h5{
+#poke-details{
+    width: 400px;
+    font-size: 20px;
+    margin-top: 40px;
+    padding: 40px;
+    border: 2px dashed rgb(149 134 102 / 55%)
+}
+
+#poke-info-container{
+    margin-top: 30px;
+}
+
+#stats-container{
+    margin-top: 15px;
+}
+
+.pokeInfoText h5 {
     margin-right: 100px;
 }
 
-table{
-    overflow:scroll;
+table {
+    overflow: scroll;
 }
 
-#stats{
+#stats {
     text-align: center;
 }
 
-td{
-padding-left: 20px;
-padding-bottom: 10px;
+td {
+    padding-left: 20px;
+    padding-bottom: 10px;
 }
 
-th{
+th {
     padding-left: 20px;
     padding-bottom: 5px;
-    }
-    
-.progress{
+}
+
+.progress {
     width: 255px;
     border: 0.5px solid black;
 }
 
-#evo-container{
+#evo-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
     gap: 20px;
-    padding-top: 32px;
+    margin-top: 70px;
 }
 
-.arrow-evo{
+#loading-Evo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.arrow-evo {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.arrow-evo img{
+.arrow-evo img {
     margin-bottom: 20px;
 }
 
-.evo-img img{
+.evo-img img {
     height: 120px;
     aspect-ratio: 4/3;
 }
 
+.visible{
+    visibility: visible;
+    display: initial;
+}
 
-@media(max-width: 1000px){
-    .evo-img img{
+.hidden{
+    visibility: hidden;
+    display: none;
+}
+
+
+
+@media(max-width: 1000px) {
+    .evo-img img {
         height: 90px;
     }
-    #evo-container{
+
+    #evo-container {
         gap: 10px;
     }
 }
 
-@media(max-width: 800px){
+@media(max-width: 800px) {
     .d-none-800px {
         display: none !important;
     }
-    #evo-container{
-        flex-direction: column;
-        padding-top: 32px;
-        padding-bottom: 32px;
+
+    .visible-800px{
+        visibility: visible;
+        display: initial;
     }
-    #pokemon-overlay{
+    
+    .hidden-800px{
+        visibility: hidden;
+        display: none;
+    }
+
+    #evo-container {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+    #close-button{
+        width: 90%;
+    }
+
+    #pokemon-overlay {
         height: 95vh;
+        width: 90%;
         overflow: hidden scroll;
     }
+    #pokemon-overlay::-webkit-scrollbar {
+        width: 5px;
+    }
+    #pokemon-overlay::-webkit-scrollbar-thumb {
+        background-color: #7c7b7b;
+        border-radius: 20px;
+    }
+    #pokemon-overlay::-webkit-scrollbar-track {
+        background-color: #606060;
+        border-radius: 10px;
+    }
+    #pokemon-overlay::-webkit-scrollbar-button:vertical:end {
+        background-color: #7c7b7b00;
+        height: 30px;
+        border-radius: 0 0 10px 10px;
+    }
+    #pokemon-overlay::-webkit-scrollbar-thumb:hover {
+        background-color: #3b3b3b;
+        cursor: grab;
+    }
+    #pokemon-overlay::-webkit-scrollbar-thumb:active {
+        background-color: #292929;
+        cursor: grabbing;
+    }
 
-    /* Scrollbar track */
-#pokemon-overlay::-webkit-scrollbar {
-    width: 5px;
+    #sprites img{
+        height: 200px;
+    }
+
 }
 
-/* Scrollbar color */
-#pokemon-overlay::-webkit-scrollbar-thumb {
-    background-color: #7c7b7b; /* Color of the scroll thumb */
-    border-radius: 20px; /* Rounded edges for the thumb */
+@media(max-width: 550px){
+    #close-button img{
+        height: 35px;
+    }
+
+    #close-button h2{
+        font-size: 20px;
+        -webkit-text-stroke-width: 0.5px;
+    }
+
+    #sprites img{
+        height: 180px;
+    }
+
+    #poke-details{
+        font-size: 16px;
+        width: 200px;
+    }
+
+    .nav-link{
+        font-size: 16px !important;
+    }
 }
 
-/* Scrollbar track color */
-#pokemon-overlay::-webkit-scrollbar-track {
-    background-color: #606060; /* Background of the scrollbar track */
-    border-radius: 10px;
-}
-#pokemon-overlay::-webkit-scrollbar-button:vertical:end {
-    background-color: #7c7b7b00; /* Farbe des Buttons */
-    height: 30px; /* Höhe des Buttons */
-    border-radius: 0 0 10px 10px; /* Abgerundete Kanten unten */
-}
-/* Hover effect on scrollbar thumb */
-#pokemon-overlay::-webkit-scrollbar-thumb:hover {
-    background-color: #3b3b3b; /* Darker color when hovered */
-    cursor: grab;
-}
-#pokemon-overlay::-webkit-scrollbar-thumb:active{
-    background-color: #292929; /* Darker color when hovered */
-    cursor: grabbing;
-}
+@media(max-width: 400px){
 
+    #evo-container {
+        margin-top: 70px;
+    }
 }

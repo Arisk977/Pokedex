@@ -24,9 +24,9 @@
 
 <body onload="init()">
     <header>
-        <h1><a href="./index.html">Pokedex</a></h1>
-        <img src="./img/pokemon-23.svg" alt="">
-        <form action="">
+        <a href="./index.html"><img src="./img/pokemon-23.svg" alt=""></a>
+        
+        <form action="javascript:void(0);" onsubmit="renderSearchedPokemon()">
             <label for="search-pokemon"></label>
         <input type="text" id="search-pokemon" placeholder="find your Pokemon">
         <img class="logo" src="./img/Pokeball--Streamline-Kameleon.svg" onclick="renderSearchedPokemon()">
@@ -54,8 +54,8 @@
 
     </main>
 
+
    
-    
 
     <footer>
 
