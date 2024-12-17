@@ -65,10 +65,27 @@
     align-items: center;
 }
 
-#sprites img {
+.arrow{
+    height: 40px;
+    aspect-ratio: 1/1;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: white;
+}
+
+.arrow:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+    transition: ease-in-out 75ms;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.poke-svg {
     height: 300px;
     aspect-ratio: 4/3;
     filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.722));
+   
 }
 
 nav {
@@ -253,7 +270,7 @@ th {
         cursor: grabbing;
     }
 
-    #sprites img{
+    .poke-svg{
         height: 200px;
     }
 
@@ -269,8 +286,8 @@ th {
         -webkit-text-stroke-width: 0.5px;
     }
 
-    #sprites img{
-        height: 180px;
+    .poke-svg{
+        height: 130px;
     }
 
     #poke-details{

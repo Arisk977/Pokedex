@@ -3,10 +3,10 @@ let limit = 50
 let BASE_URL_PAGE = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`;
 let pokemon = [];
 let newPokemon = [];
-let PokemonDataArray= {};
-let allPokemon= [];
+let PokemonDataArray = {};
+let allPokemon = [];
 let allGenPokemon = [];
-let searchedPokemon=[]
+let searchedPokemon = []
 
 function init() {
     renderPokemon();
@@ -29,32 +29,38 @@ function renderPokemonCards() {
     let content = document.getElementById('content');
     content.innerHTML = "";
 
-    if(searchedPokemon.length > 0){searchedPokemon.sort((a, b) => a.id - b.id);
-    searchedPokemon.forEach((poke, index) => {
-        content.innerHTML += pokeCardTemp(index, searchedPokemon);
-    });}
-    else{allPokemon.sort((a, b) => a.id - b.id);
+    if (searchedPokemon.length > 0) {
+        searchedPokemon.sort((a, b) => a.id - b.id);
+        searchedPokemon.forEach((poke, index) => {
+            content.innerHTML += pokeCardTemp(index, searchedPokemon);
+        });
+    }
+    else {
+        allPokemon.sort((a, b) => a.id - b.id);
         allPokemon.forEach((poke, index) => {
             content.innerHTML += pokeCardTemp(index, allPokemon);
-        });}
-    
+        });
+    }
+
 }
 
-async function renderSearchedPokemon(){
+async function renderSearchedPokemon() {
     let loadingButton = document.getElementById('load-more');
     let content = document.getElementById('content');
+    let inputValue = document.getElementById('search-pokemon').value
     
+    if(inputValue.length > 2){
     enableLoadingSpinner();
-    allPokemon= [];
+    allPokemon = [];
     content.innerHTML = "";
     await fetchAllPokemonArray();
     searchPokemon();
     renderPokemonCards();
     disableLoadingSpinner();
-    loadingButton.classList.add('d-none');
+    loadingButton.classList.add('d-none');}
 }
 
-async function fetchAllPokemonArray(){
+async function fetchAllPokemonArray() {
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151`);
     let responseToJson = await response.json();
 
@@ -69,34 +75,45 @@ function searchPokemon() {
     );
 
     searchedPokemon = filterPokemon;
-return searchedPokemon
+    return searchedPokemon
 }
-
-
 
 function openPokeCard(index) {
     let overlayRef = document.getElementById('overlay');
     overlayRef.classList.remove('d-none');
-
-    if(searchedPokemon.length >0){
+    
+    if (searchedPokemon.length > 0) {
         overlayRef.innerHTML = pokemonOverlayCardTemp(index, searchedPokemon);
         addPokeCries(index, searchedPokemon);
         renderPokeCard(index, searchedPokemon)
     }
-    else{overlayRef.innerHTML = pokemonOverlayCardTemp(index, allPokemon);
+    else {
+        overlayRef.innerHTML = pokemonOverlayCardTemp(index, allPokemon);
         addPokeCries(index, allPokemon);
         renderPokeCard(index, allPokemon)
     }
 }
 
+function nextPokemon(index){
+    if(index + 1 < allPokemon.length){
+        index++;
+        openPokeCard(index)
+}
+}
+
+function previousPokemon(index){
+    if(index > 0){
+        index--;
+        openPokeCard(index)
+}
+}
 
 async function getAllGenPokemon() {
-    let allGenURL= await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=500");
-    let allGenJSON= await allGenURL.json();
+    let allGenURL = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=500");
+    let allGenJSON = await allGenURL.json();
 
-    allGenPokemon= [];
+    allGenPokemon = [];
     await getInfoToArray(allGenJSON, allGenPokemon);
-    
 }
 
 async function getInfoToArray(responseToJson, allPokemon) {
@@ -130,7 +147,8 @@ async function loadMorePokemon() {
                 loadingButton.classList.add('d-none');
             }
             window.scrollTo({ top: scrollTop, behavior: 'smooth' });
-        }); }, 1000);
+        });
+    }, 1000);
 }
 
 async function fetchMorePokemon() {
@@ -140,28 +158,26 @@ async function fetchMorePokemon() {
 
         pokemon = [];
         await getInfoToArray(responseToJson, pokemon);
-
         mergePokemonData(pokemon);
         renderPokemonCards();
-     
+
     } catch (error) {
         console.error("Fehler beim Laden von Pokémon:", error);
-    } finally {   
+    } finally {
         disableLoadingSpinner();
     }
 }
 
 
-function addPokeCries(index, array){
+function addPokeCries(index, array) {
     let audioIndex = array[index].id;
-    let cries= new Audio(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${audioIndex}.ogg`);
-   cries.play();
-   cries.volume = 0.2;
+    let cries = new Audio(`https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${audioIndex}.ogg`);
+    cries.play();
+    cries.volume = 0.2;
 }
 
-function closePokeInfo(){
-    let overlayRef= document.getElementById('overlay');
-
+function closePokeInfo() {
+    let overlayRef = document.getElementById('overlay');
     overlayRef.classList.add('d-none');
 }
 

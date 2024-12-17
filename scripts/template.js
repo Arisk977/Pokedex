@@ -25,7 +25,9 @@ function pokemonOverlayCardTemp(index, array) {
 
             <div id="pokemon-overlay">
                 <div id="sprites" class="${array[index].type1}">
-                <img src="${array[index].svg}" alt="${array[index].pokemon}">
+                <img src="./img/Arrow-Button-Left-3--Streamline-Ultimate.png" alt="arrow-left" onclick="previousPokemon(${index})" class="arrow">
+                <img src="${array[index].svg}" alt="${array[index].pokemon}" class="poke-svg">
+                <img src="./img/Arrow-Button-Right-3--Streamline-Ultimate.png" alt="arrow-rigt" onclick="nextPokemon(${index})" class="arrow">
                 </div>
                 <nav id="navbar">
                     <ul class="nav nav-tabs">
@@ -48,7 +50,7 @@ function pokemonOverlayCardTemp(index, array) {
     `
 }
 
-function pokeInfoTemp(index, array){
+function pokeInfoTemp(index, array) {
     return `<div id="poke-info-container">
     <table>
     <tr>
@@ -76,7 +78,7 @@ function pokeInfoTemp(index, array){
        `
 }
 
-function pokeStatsTemp(index, array){
+function pokeStatsTemp(index, array) {
     return `
    <div id="stats-container">
     <table id="stats">
@@ -139,9 +141,9 @@ function pokeStatsTemp(index, array){
     `
 }
 
-function pokeEvoTemp(foundEvolutions){
-    if(Object.keys(foundEvolutions).length === 3){
-    return `
+function pokeEvoTemp(foundEvolutions) {
+    if (Object.keys(foundEvolutions).length === 3) {
+        return `
      <div id="evo-container">
         <div class="evo-img"><img src="${foundEvolutions.evo1.svg}" alt=""></div>
         <div class="arrow-evo"><img src="./img/Arrow-Button-Right-3--Streamline-Ultimate.png" class="visible hidden-800px">  <img src="./img/Arrow-Button-Down-3--Streamline-Ultimate.png" class="visible-800px hidden"><span>${Evo2Trigger()}</span>
@@ -152,7 +154,7 @@ function pokeEvoTemp(foundEvolutions){
         <div class="evo-img"><img src="${foundEvolutions.evo3.svg}"></div>
     </div>
     `}
-    else if(Object.keys(foundEvolutions).length === 2){
+    else if (Object.keys(foundEvolutions).length === 2) {
         return `
            <div id="evo-container">
         <div class="evo-img"><img src="${foundEvolutions.evo1.svg}" alt=""></div>
@@ -173,31 +175,31 @@ function pokeEvoTemp(foundEvolutions){
     }
 }
 
-function pokeDetailsTemp(text){
+function pokeDetailsTemp(text) {
     return `
        <div id="poke-details">${text}</div>
     `
 }
 
-function loadingTemp(){
+function loadingTemp() {
     return `<div id="loading-Evo-container">
             <img id="loading-evo" src="./img/Pokeball--Streamline-Kameleon.svg"
                 alt="Pokeball">
         </div>`
 }
 
-function Evo2Trigger(){
-    if (foundEvolutions.evo2.trigger == "level-up" && foundEvolutions.evo2.levelUp !== null) { 
-         return "Level" + " " + foundEvolutions.evo2.levelUp;
+function Evo2Trigger() {
+    if (foundEvolutions.evo2.trigger == "level-up" && foundEvolutions.evo2.levelUp !== null) {
+        return "Level" + " " + foundEvolutions.evo2.levelUp;
     } else {
         return foundEvolutions.evo2.trigger;
     }
-    
+
 }
 
-function Evo3Trigger(){
-    if (foundEvolutions.evo3.trigger == "level-up"){
+function Evo3Trigger() {
+    if (foundEvolutions.evo3.trigger == "level-up") {
         return "Level" + " " + foundEvolutions.evo3.levelUp
     }
-    else {return foundEvolutions.evo3.trigger}
+    else { return foundEvolutions.evo3.trigger }
 }

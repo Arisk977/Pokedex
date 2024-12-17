@@ -28,7 +28,7 @@
         
         <form action="javascript:void(0);" onsubmit="renderSearchedPokemon()">
             <label for="search-pokemon"></label>
-        <input type="text" id="search-pokemon" placeholder="find your Pokemon">
+        <input type="text" id="search-pokemon" placeholder="find your Pokemon" minlength="3">
         <img class="logo" src="./img/Pokeball--Streamline-Kameleon.svg" onclick="renderSearchedPokemon()">
     </form>
         
@@ -45,6 +45,8 @@
             <h3 id="loading-text">is loading...</h3>
         </div>
          
+        
+    
 
         <div id="content">
         </div>
